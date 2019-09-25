@@ -1,26 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+//import Counter from './components/Counter.js' //imports our class 'Counter' from the directory 'components'
+import Profile from './components/Profile.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      index: 0
+    }
+  }
+
+  increment = () => {
+    let curIndex = this.state.index;
+    let nextIndex = curIndex + 1;
+    this.setState({
+      index: nextIndex
+    })
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Profile curImageIndex={this.state.index}/>
+        <button onClick={() => this.increment()}>Next Image</button>
+      </div>
+    )
+  }
+
 }
 
 export default App;
